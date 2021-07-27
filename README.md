@@ -1,24 +1,40 @@
-# practice2021-vue-stub
 
-## Project setup
+# Web-приложение Pockets
+
+![status app developing](https://img.shields.io/badge/app-developing-yellow?style=flat.svg)
+![license MIT](https://img.shields.io/badge/license-MIT-green?style=flat.svg)
+
+## Краткое описание проекта
+
+Учебный проект летней практики от технологической компании SibDev, в котором разрабатывается web-приложение для учета средств и получении простой аналитики по категориям расходов и доходов.
+
+## Требования к программному обеспечению
+- Node.js актуальной версии;
+- Менеджер пакетов npm;
+- Web-браузер.
+
+## Запуск и развертывание web-приложения
+
+### Установить все зависимости
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Компиляция и горячая перезагрузка для разработки
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Компиляция и сборка дистрибутива для развертывания
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Ссылки и исправление файлов
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Автор проекта
+
+Шубин Данил, 2021

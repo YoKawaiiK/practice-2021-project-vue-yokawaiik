@@ -4,10 +4,11 @@
 $--blue: #1390e5;
 
 // theme settings
-$--primary: $--blue;
+$--color-primary: #7367f0;
+$--color-primary-light: lighten($--color-primary, 20);
 
 // fonts
-$--font-family: Avenir, Helvetica, Arial, sans-serif;
+$--font-family: Avenir, Helvetica, Arial, sans-serif, Montserrat;
 $--font-weight-bold: 700;
 $--font-weight-medium: 500;
 $--font-weight-normal: 400;

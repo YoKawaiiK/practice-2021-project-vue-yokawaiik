@@ -1,7 +1,7 @@
 // import Home from "../views/Home.vue";
 
-import Authorization from "../views/Authorization.vue";
-import Registration from "../views/Registration.vue";
+import Signin from "../views/Signin.vue";
+import Signup from "../views/Signup.vue";
 
 export default [
   //   {
@@ -21,11 +21,11 @@ export default [
   {
     path: "/auth/signin",
     name: "Signin",
-    component: Authorization,
+    component: Signin,
   },
   {
     path: "/auth/signup",
     name: "Signup",
-    component: Registration,
+    component: Signup,
   },
 ];

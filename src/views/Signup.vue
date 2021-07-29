@@ -68,7 +68,6 @@
         </div>
         <div class="footer__item item_flex">
           <span class="text_p">Already have an account?</span>
-          <!-- <span class="text_p_link">Sign in instead</span> -->
           <a tabindex="0">
             <router-link :to="{ name: 'Signin' }">Sign in instead</router-link>
           </a>
@@ -85,11 +84,10 @@
 
 <script>
 export default {
-  name: "Registration",
+  name: "Signup",
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/assets/scss/main";
-@import "@/assets/scss/components/_sign-form";
 </style>

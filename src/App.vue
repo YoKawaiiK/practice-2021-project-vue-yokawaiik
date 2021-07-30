@@ -9,7 +9,7 @@ export default {
   watch: {
     // change web-page title
     $route(to) {
-      document.title = to.meta.title || "Main"
+      document.title = to.meta.title || "Main";
     },
   },
   created() {

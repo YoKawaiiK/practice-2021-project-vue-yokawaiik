@@ -33,6 +33,6 @@ export default [
   // link default page if user go to unknown path in url
   {
     path: "*",
-    redirect: "/Signin",
+    redirect: "/auth/signin",
   },
 ];

@@ -5,7 +5,7 @@ import auth from "./modules/auth";
 // These modules
 
 // Plugins
-import { VuexAxios } from "../plugins/VueAxios";
+import { VuexAxios } from "../plugins/index";
 
 Vue.use(Vuex);
 

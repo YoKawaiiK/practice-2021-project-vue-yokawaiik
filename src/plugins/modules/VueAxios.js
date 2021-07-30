@@ -12,7 +12,7 @@ export const VuexAxios = function (store) {
   store.$axios = $axios;
 };
 // export for vue
-export default {
+export const VueAxios = {
   install(vue) {
     // vue.prototype.$axios = axios;
     vue.prototype.$axios = $axios;

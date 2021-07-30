@@ -16,7 +16,8 @@ a {
   cursor: pointer;
   outline: none;
   text-decoration: none;
-
+  font-family: Montserrat;
+  
   &:hover {
     color: $--color-primary-light;
     text-decoration: underline;

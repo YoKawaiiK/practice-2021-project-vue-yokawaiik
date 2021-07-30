@@ -6,7 +6,7 @@ module.exports = {
       poll: true,
     },
     // Configure proxy, more: https://github.com/chimurai/http-proxy-middleware#http-proxy-options
-    // proxy: 'http://localhost:1337/'
+    // proxy: "http://89.108.102.170/",
   },
 
   css: {

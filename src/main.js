@@ -6,8 +6,8 @@ import "./assets/scss/main.scss";
 import store from "./store/index";
 
 // Global use axios in vue component
-// import VueAxios from "./plugins/VueAxios";
-// Vue.use(VueAxios);
+import VueAxios from "./plugins/VueAxios";
+Vue.use(VueAxios);
 
 Vue.config.productionTip = false;
 

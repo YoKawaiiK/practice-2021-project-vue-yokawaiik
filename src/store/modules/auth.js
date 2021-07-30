@@ -27,17 +27,20 @@ export default {
      * @param {Object=} data - field data in form
      */
     async signin({ commit }, data) {
-      let response = await this.$axios.post("/auth/token/obtain/", data);
-      console.log(response.status);
-      if (response.status == 200) {
-        await commit("SET_TOKEN", response.data);
-        $router.push({
-          name: "Dashboard",
-        });
-      }
-      // if dont account then go to signup
-      // i maybe change it
-      else {
+      try {
+        let response = await this.$axios.post("/auth/token/obtain/", data);
+
+        if (response.status == 200) {
+          await commit("SET_TOKEN", response.data);
+          $router.push({
+            name: "Dashboard",
+          });
+        }
+
+        // if dont account then go to signup
+        // i maybe change it
+      } catch (error) {
+        alert("Такой пользователь не найден");
         $router.push({
           name: "Signup",
         });

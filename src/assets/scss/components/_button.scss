@@ -28,5 +28,10 @@
   &:hover {   
     @include button-highligth;
   }
+
+  &:active {
+    margin: 1px 1px 0;
+    box-shadow: -1px -1px 1px rgb(167, 167, 167);
+  }
 }
 

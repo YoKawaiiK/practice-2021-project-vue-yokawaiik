@@ -9,6 +9,9 @@ import store from "./store/index";
 import { VueAxios } from "./plugins/index";
 Vue.use(VueAxios);
 
+// import PButton from "@/components/PButton";
+// Vue.component("PButton", PButton);
+
 Vue.config.productionTip = false;
 
 new Vue({

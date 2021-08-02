@@ -1,3 +1,3 @@
-import checkFields from "./modules/checkFields";
+import AuthService from "./modules/AuthService";
 
-export { checkFields };
+export { AuthService };

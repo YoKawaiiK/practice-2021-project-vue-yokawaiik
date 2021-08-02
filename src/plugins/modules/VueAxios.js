@@ -1,16 +1,18 @@
 import axios from "axios";
 
 // configuration
-let option = {
-  baseURL: "http://89.108.102.170/api/",
+let options = {
+  baseURL: process.env.VUE_APP_BASE_URL,
 };
+
 // instance for vuex
-const $axios = axios.create(option);
+export const $axios = axios.create(options);
 
 // export for vuex
 export const VuexAxios = function (store) {
   store.$axios = $axios;
 };
+
 // export for vue
 export const VueAxios = {
   install(vue) {

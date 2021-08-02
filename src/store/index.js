@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import auth from "./modules/auth";
 
-// These modules
+// Here modules
+import auth from "./modules/auth/auth";
 
-// Plugins
+// Here plugins
 import { VuexAxios } from "../plugins/index";
 
 Vue.use(Vuex);

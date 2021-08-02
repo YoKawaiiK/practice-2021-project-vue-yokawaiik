@@ -1,3 +1,3 @@
-import { VueAxios, VuexAxios } from "./modules/VueAxios";
+import { $axios, VueAxios, VuexAxios } from "./modules/VueAxios";
 
-export { VueAxios, VuexAxios };
+export { $axios, VueAxios, VuexAxios };

@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+
 // file with routes
 import routes from "./routes";
 
 // file with handler for beforeEach
-import handlerBeforeEach from "./handlerBeforeEach";
+import handlerBeforeEach from "./handlers/handlerBeforeEach";
 
 Vue.use(VueRouter);
 

@@ -1,38 +1,55 @@
-import Signin from "../views/Signin.vue";
-import Signup from "../views/Signup.vue";
-import Dashboard from "../views/Dashboard.vue";
+// web-pages
+import Auth from "@/views/auth/Auth.vue";
+import SignIn from "@/views/auth/child/SignIn.vue";
+import SignUp from "@/views/auth/child/SignUp.vue";
+import Dashboard from "@/views/Dashboard.vue";
+
+// routes names
+import { AUTH, SIGN_IN, SIGN_UP, DASHBOARD } from "./constants/routesNames";
+
+// middleware for guarding routes
+import auth from "./middleware/auth";
+import guest from "./middleware/guest";
 
 export default [
   {
-    path: "/auth/signin",
-    name: "Signin",
-    component: Signin,
-    meta: {
-      title: "Аутентификация",
-      guest: true,
-    },
-  },
-  {
-    path: "/auth/signup",
-    name: "Signup",
-    component: Signup,
-    meta: {
-      title: "Регистрация",
-      guest: true,
-    },
+    path: "/auth",
+    redirect: "/auth/signin",
+    name: AUTH,
+    component: Auth,
+    children: [
+      {
+        path: "sign-in",
+        name: SIGN_IN,
+        component: SignIn,
+        meta: {
+          title: "Аутентификация",
+          middleware: [guest],
+        },
+      },
+      {
+        path: "sign-up",
+        name: SIGN_UP,
+        component: SignUp,
+        meta: {
+          title: "Регистрация",
+          middleware: [guest],
+        },
+      },
+    ],
   },
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: DASHBOARD,
     component: Dashboard,
     meta: {
       title: "Dashboard",
-      requiresAuth: true,
+      middleware: [auth],
     },
   },
   // link default page if user go to unknown path in url
   {
     path: "*",
-    redirect: "/auth/signin",
+    redirect: "/auth/sign-in",
   },
 ];

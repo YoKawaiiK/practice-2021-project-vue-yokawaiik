@@ -4,9 +4,6 @@ import Vuex from "vuex";
 // Here modules
 import auth from "./modules/auth/auth";
 
-// Here plugins
-import { VuexAxios } from "../plugins/index";
-
 Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== "production";
@@ -16,5 +13,4 @@ export default new Vuex.Store({
     auth,
   },
   strict: debug,
-  plugins: [VuexAxios],
 });

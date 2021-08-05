@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PSignForm :footer-margin-top-big="true">
+    <VSignForm :footer-margin-top-big="true">
       <template v-slot:header-title>
         <span> Pockets </span>
       </template>
@@ -10,71 +10,93 @@
       </template>
 
       <template v-slot:content>
-        <PSignFormField
-          id="email"
-          v-model="data.email"
-          type="input"
-          label="Email"
-          placeholder="johndoe@gmail.com"
-        />
-
-        <PSignFormField
-          v-model="data.password"
-          type="password"
-          placeholder="••••••••"
-          help-text="Forgot password?"
-          label="Password"
-          @help-click="nothing()"
+        <VSignFormField
+          v-for="(field, index) in formData"
+          :key="index"
+          v-model="field.value"
+          :name="field.name"
+          :type="field.type"
+          :label="field.label"
+          :placeholder="field.placeholder"
+          :required="field.required"
+          :errors="field.errors"
         />
       </template>
       <template v-slot:item-button>
-        <PButton @click="clickSignIn()">Login</PButton>
+        <hr />
+        <VButton type="submit" @click.prevent="clickSignIn">Login</VButton>
       </template>
       <template v-slot:item-flex>
         <p>New on our platform?</p>
-        <router-link :to="{ name: ROUTE_SIGN_UP }"
+        <router-link :to="{ name: $options.routes.ROUTE_SIGN_UP }"
           >Create an account</router-link
         >
       </template>
-    </PSignForm>
+    </VSignForm>
   </div>
 </template>
 
 <script>
-import PSignForm from "@/components/PSignForm/PSignForm";
-import PButton from "@/components/PButton";
-import PSignFormField from "@/components/PSignForm/PSignFormField";
+import VSignForm from "@/components/VSignForm";
+import VButton from "@/components/VButton";
+import VSignFormField from "@/components/VSignFormField";
 
 import { mapActions } from "vuex";
 
-import { checkFields } from "@/functions/index";
+import { formValidator } from "@/utils/index";
 
-import { SIGN_UP as ROUTE_SIGN_UP } from "@/router/constants/routesNames";
+import { ROUTE_SIGN_UP } from "@/router/constants/routesNames";
 
 import { AUTH, SIGN_IN } from "@/store/modules/auth/constants/names";
 
 export default {
   name: "SignIn",
-  components: { PSignForm, PButton, PSignFormField },
+  components: { VSignForm, VButton, VSignFormField },
   data() {
     return {
-      data: {
-        email: "",
-        password: "",
-      },
+      errors: false,
+      formData: [
+        {
+          name: "email",
+          type: "email",
+          label: "Email",
+          placeholder: "johndoe@gmail.com",
+          required: true,
+          errors: [],
+          value: "",
+        },
+        {
+          name: "password",
+          type: "password",
+          label: "Password",
+          placeholder: "••••••••",
+          required: true,
+          errors: [],
+          value: "",
+        },
+      ],
     };
   },
-  created() {
-    this.ROUTE_SIGN_UP = ROUTE_SIGN_UP;
+  routes: {
+    ROUTE_SIGN_UP,
   },
   methods: {
     ...mapActions(AUTH, [SIGN_IN]),
-    clickSignIn() {
-      if (!checkFields(this.data)) return alert("Поля не заполнены");
-      this[SIGN_IN](this.data);
+    invalidateForm() {
+      this.errors = true;
     },
-    nothing() {
-      alert("Функция не доступна");
+    clickSignIn() {
+      let validation = formValidator(this.formData);
+
+      // only {[name field]: value}
+      let data = Object.assign(
+        {},
+        ...this.formData.map((field) => ({ [field.name]: field.value }))
+      );
+
+      if (validation) {
+        this[SIGN_IN](data);
+      }
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PSignForm>
+    <VSignForm>
       <template v-slot:header-title>
         <span> Pockets </span>
       </template>
@@ -10,97 +10,117 @@
       </template>
 
       <template v-slot:content>
-        <PSignFormField
-          id="username"
-          v-model="data.username"
-          type="input"
-          label="Username"
-          placeholder="johndoe"
-        />
-
-        <PSignFormField
-          id="email"
-          v-model="data.email"
-          type="input"
-          label="Email"
-          placeholder="johndoe@gmail.com"
-        />
-
-        <PSignFormField
-          id="password"
-          v-model="data.password"
-          type="password"
-          label="Password"
-          placeholder="••••••••"
-        />
-        <PSignFormCheckBox id="agree" v-model="data.agreeCheck">
-          Я со всем согласен отпустите
-        </PSignFormCheckBox>
+        <div v-for="(field, index) in formData" :key="index">
+          <VSignFormField
+            v-if="field.type !== 'checkbox'"
+            v-model="field.value"
+            :name="field.name"
+            :type="field.type"
+            :label="field.label"
+            :placeholder="field.placeholder"
+            :required="field.required"
+            :errors="field.errors"
+          />
+          <VSignFormCheckBox
+            v-else
+            v-model="field.value"
+            :required="field.required"
+            :errors="field.errors"
+          >
+            Я со всем согласен отпустите
+          </VSignFormCheckBox>
+        </div>
       </template>
       <template v-slot:item-button>
-        <PButton @click="clickSignUp()">Login</PButton>
+        <VButton @click.prevent="clickSignUp">Login</VButton>
       </template>
       <template v-slot:item-flex>
         <p>New on our platform?</p>
-        <router-link :to="{ name: ROUTE_SIGN_IN }"
+        <router-link :to="{ name: $options.routes.ROUTE_SIGN_IN }"
           >Create an account</router-link
         >
       </template>
-    </PSignForm>
+    </VSignForm>
   </div>
 </template>
 
 <script>
-import PSignForm from "@/components/PSignForm/PSignForm";
-import PButton from "@/components/PButton";
-import PSignFormField from "@/components/PSignForm/PSignFormField";
-import PSignFormCheckBox from "@/components/PSignForm/PSignFormCheckBox";
+import VSignForm from "@/components/VSignForm";
+import VButton from "@/components/VButton";
+import VSignFormField from "@/components/VSignFormField";
+import VSignFormCheckBox from "@/components/VSignFormCheckBox";
 
-import { mapActions } from "vuex";
-
-import { SIGN_IN as ROUTE_SIGN_IN } from "@/router/constants/routesNames";
+import { ROUTE_SIGN_IN } from "@/router/constants/routesNames";
 
 import { AuthService } from "@/services/index";
 
-import { checkFields } from "@/functions/index";
+import { formValidator } from "@/utils/index";
 
 export default {
   name: "SignUp",
-  components: { PSignForm, PSignFormCheckBox, PButton, PSignFormField },
+  components: { VSignForm, VSignFormCheckBox, VButton, VSignFormField },
   data() {
     return {
-      data: {
-        username: undefined,
-        email: undefined,
-        password: undefined,
-        agreeCheck: false,
-      },
+      formData: [
+        {
+          name: "username",
+          type: "text",
+          label: "Email",
+          placeholder: "johndoe",
+          required: true,
+          errors: [],
+          value: "",
+        },
+        {
+          name: "email",
+          type: "email",
+          label: "Email",
+          placeholder: "johndoe@gmail.com",
+          required: true,
+          errors: [],
+          value: "",
+        },
+        {
+          name: "password",
+          type: "password",
+          label: "Password",
+          placeholder: "••••••••",
+          required: true,
+          errors: [],
+          value: "",
+        },
+        {
+          name: "agree",
+          type: "checkbox",
+          label: "Password",
+          required: true,
+          errors: [],
+          value: false,
+        },
+      ],
     };
   },
-  created() {
-    this.ROUTE_SIGN_IN = ROUTE_SIGN_IN;
+  routes: {
+    ROUTE_SIGN_IN,
   },
   methods: {
-    ...mapActions("auth", ["register"]),
     async clickSignUp() {
-      if (!checkFields(this.data)) return alert("Поля не заполнены");
+      let validation = formValidator(this.formData);
+      if (!validation) return;
       try {
-        // await this.$axios.post("/auth/register/", this.data);
-        await AuthService.signUp(this.data);
+        let data = Object.assign(
+          {},
+          ...this.formData.map((field) => ({ [field.name]: field.value }))
+        );
+        await AuthService.signUp(data);
         await this.$router.push({
           name: ROUTE_SIGN_IN,
         });
       } catch (error) {
-        let message = Object.entries(error.response.data)
-          .map((x) => x[1][0])
-          .join(" ");
-        alert(message);
+        let { username = "", email = "" } = error.response.data;
+        this.$toast.show(username + " " + email, "warning");
       }
     },
   },
 };
 </script>
-
-<style lang="scss" scoped>
-@import "@/assets/scss/main";
-</style>

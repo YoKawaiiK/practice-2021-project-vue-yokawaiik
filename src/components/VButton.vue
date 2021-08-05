@@ -1,21 +1,22 @@
 <template>
-  <button class="button" @click.prevent="callback($event)">
+  <button :type="type" class="button" v-on="$listeners">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-  name: "PButton",
-  methods: {
-    callback: function (e) {
-      return this.$emit("click", e);
+  name: "VButton",
+  props: {
+    type: {
+      type: String,
+      default: "button",
     },
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .button {
   width: 100%;
   border-color: transparent;
@@ -29,18 +30,18 @@ export default {
   font-size: $--font-size-base;
   letter-spacing: 0.4px;
 
-  color: #ffffff;
+  color: $--text-color-on-primary;
   transition: all 0.2s;
   cursor: pointer;
   outline: none;
 
   @mixin button-highligth {
-    color: #414146;
+    color: $--text-color-on-primary-light;
     background-color: $--color-primary-light;
   }
 
   &:focus {
-    box-shadow: 0 0 0 1px rgba(163, 162, 168, 0.6);
+    box-shadow: 0 0 0 1px $--shadow-color;
 
     @include button-highligth;
   }
@@ -51,7 +52,7 @@ export default {
 
   &:active {
     margin: 1px 1px 0;
-    box-shadow: -1px -1px 1px rgb(167, 167, 167);
+    box-shadow: -1px -1px 1px $--shadow-color-active;
   }
 }
 
@@ -70,11 +71,11 @@ export default {
   }
 
   &:active {
-    color: #414146;
+    color: $--text-color-on-primary-light;
   }
 
   &:focus {
-    color: 0 0 0 1px rgba(163, 162, 168, 0.6);
+    color: 0 0 0 1px $--shadow-color;
     text-decoration: underline;
   }
 }

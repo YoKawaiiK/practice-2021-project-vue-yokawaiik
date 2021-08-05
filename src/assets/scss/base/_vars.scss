@@ -6,6 +6,29 @@ $--blue: #1390e5;
 // theme settings
 $--color-primary: #7367f0;
 $--color-primary-light: lighten($--color-primary, 20);
+$--background-color: #ffffff;
+
+$--color-primary-focus: rgba(114, 103, 240, 0.6);
+
+// other color (message)
+$--color-info: #E5F5FF;
+$--color-danger: #FFEFE9;
+$--color-danger-hard: darken($--color-danger, 30);
+$--color-success: #E4F6E8;
+$--color-warning: #ddd9a3;
+
+
+
+// Text color
+$--text-color-on-primary: #ffffff;
+$--text-color-on-primary-light: #414146;
+
+// components options
+$--shadow-color: rgba(163, 162, 168, 0.6);
+$--shadow-color-active: rgb(167, 167, 167);
+$--label-text-color: #6e6b7b;
+$--input-border-color:#d8d6de;
+$--placeholder-color:#b9b9c3;
 
 // fonts
 $--font-family: Montserrat, Avenir, Helvetica, Arial, sans-serif;

@@ -1,22 +1,17 @@
 import axios from "axios";
 
-// configuration
-let options = {
-  baseURL: process.env.VUE_APP_BASE_URL,
-};
+// instance global
+export const $axios = axios.create();
 
-// instance for vuex
-export const $axios = axios.create(options);
-
-// export for vuex
+// export for vuex vue global
 export const VuexAxios = function (store) {
   store.$axios = $axios;
 };
 
-// export for vue
+// export for vue global
 export const VueAxios = {
-  install(vue) {
+  install(Vue) {
     // vue.prototype.$axios = axios;
-    vue.prototype.$axios = $axios;
+    Vue.prototype.$axios = $axios;
   },
 };

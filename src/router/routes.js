@@ -5,7 +5,7 @@ import SignUp from "@/views/auth/child/SignUp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 
 // routes names
-import { AUTH, SIGN_IN, SIGN_UP, DASHBOARD } from "./constants/routesNames";
+import { ROUTE_AUTH, ROUTE_SIGN_IN, ROUTE_SIGN_UP, ROUTE_DASHBOARD } from "./constants/routesNames";
 
 // middleware for guarding routes
 import auth from "./middleware/auth";
@@ -15,12 +15,12 @@ export default [
   {
     path: "/auth",
     redirect: "/auth/signin",
-    name: AUTH,
+    name: ROUTE_AUTH,
     component: Auth,
     children: [
       {
         path: "sign-in",
-        name: SIGN_IN,
+        name: ROUTE_SIGN_IN,
         component: SignIn,
         meta: {
           title: "Аутентификация",
@@ -29,7 +29,7 @@ export default [
       },
       {
         path: "sign-up",
-        name: SIGN_UP,
+        name: ROUTE_SIGN_UP,
         component: SignUp,
         meta: {
           title: "Регистрация",
@@ -40,7 +40,7 @@ export default [
   },
   {
     path: "/dashboard",
-    name: DASHBOARD,
+    name: ROUTE_DASHBOARD,
     component: Dashboard,
     meta: {
       title: "Dashboard",

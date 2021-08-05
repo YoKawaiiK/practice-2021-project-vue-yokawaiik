@@ -2,15 +2,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "./assets/scss/main.scss";
-
 import store from "./store/index";
 
-// Global use axios in vue component
-import { VueAxios } from "./plugins/index";
-Vue.use(VueAxios);
+// event bus use global vue
+import { eventBus } from "@/utils/index";
+Vue.prototype.$eventBus = eventBus;
 
-// import PButton from "@/components/PButton";
-// Vue.component("PButton", PButton);
+// Global use plugins in vue components
+import { VueAxios, ToastsPlugin } from "./plugins/index";
+Vue.use(VueAxios);
+Vue.use(ToastsPlugin);
 
 Vue.config.productionTip = false;
 

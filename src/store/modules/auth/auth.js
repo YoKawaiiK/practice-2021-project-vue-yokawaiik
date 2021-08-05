@@ -1,6 +1,7 @@
 import $router from "@/router/index";
+import Vue from "vue";
 
-import { DASHBOARD } from "@/router/constants/routesNames";
+import { ROUTE_DASHBOARD } from "@/router/constants/routesNames";
 
 import { AuthService } from "@/services/index";
 
@@ -34,12 +35,11 @@ export default {
         let response = await AuthService.signIn(data);
         await commit(SET_TOKEN, response.data);
         $router.push({
-          name: DASHBOARD,
+          name: ROUTE_DASHBOARD,
         });
       } catch (error) {
-        alert(error.response.data.detail);
+        Vue.prototype.$toast.show(error.response.data.detail, "warning");
       }
     },
   },
 };
-// this.$axios.get()

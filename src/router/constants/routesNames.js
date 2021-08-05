@@ -1,4 +1,4 @@
-export const AUTH = "Auth",
-  SIGN_IN = "SignIn",
-  SIGN_UP = "SignUp",
-  DASHBOARD = "Dashboard";
+export const ROUTE_AUTH = "Auth",
+  ROUTE_SIGN_IN = "SignIn",
+  ROUTE_SIGN_UP = "SignUp",
+  ROUTE_DASHBOARD = "Dashboard";

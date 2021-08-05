@@ -1,6 +1,6 @@
 <template>
-  <div class="sign-form">
-    <form class="sign-form__container" autocomplete="on">
+  <form div class="sign-form" novalidate autocomplete="on">
+    <div class="sign-form__container">
       <header class="container__header">
         <div class="header__title">
           <slot name="header-title"> </slot>
@@ -14,43 +14,28 @@
       <main class="container__content">
         <slot name="content"> </slot>
       </main>
-      <footer class="container__footer" :class="changeClassFooter">
+
+      <footer class="container__footer">
         <div class="footer__item">
           <div class="item__button">
-            <slot name="item-button"></slot>
+            <slot name="item-button"> </slot>
           </div>
         </div>
         <div class="footer__item item_flex">
           <slot name="item-flex"></slot>
         </div>
       </footer>
-    </form>
-  </div>
+    </div>
+  </form>
 </template>
 
 <script>
 export default {
-  name: "PSignForm",
-  props: {
-    footerMarginTopBig: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    changeClassFooter() {
-      switch (this.footerMarginTopBig) {
-        case true:
-          return "footer_margin-top-big";
-        default:
-          return "";
-      }
-    },
-  },
+  name: "VSignForm",
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scope>
 .sign-form {
   position: relative;
 
@@ -105,10 +90,6 @@ export default {
 
   .container__content {
     margin: 24px 33px 0px;
-
-    // .content__item:not(:nth-child(1)) {
-    //   margin-top: 17px;
-    // }
     > :not(:nth-child(1)) {
       margin-top: 17px;
     }
@@ -130,10 +111,10 @@ export default {
         }
       }
     }
-
-    &.footer_margin-top-big {
-      margin-top: 40px;
-    }
+  }
+  hr {
+    border: none;
+    margin: 40px 0px 0px;
   }
 }
 </style>

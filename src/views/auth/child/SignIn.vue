@@ -26,7 +26,7 @@
       </template>
       <template v-slot:footer-button>
         <hr />
-        <v-button type="submit" @click.prevent="clickSignIn">Login</v-button>
+        <v-button @click.prevent="clickSignIn">Login</v-button>
       </template>
       <template v-slot:item-flex>
         <p>New on our platform?</p>

@@ -31,7 +31,7 @@
           </v-sign-form-check-box>
         </div>
       </template>
-      <template v-slot:item-button>
+      <template v-slot:footer-button>
         <v-button @click.prevent="clickSignUp">Login</v-button>
       </template>
       <template v-slot:item-flex>

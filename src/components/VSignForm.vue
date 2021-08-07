@@ -16,12 +16,12 @@
       </main>
 
       <footer class="container__footer">
-        <div class="footer__item">
-          <div class="item__button">
-            <slot name="item-button"> </slot>
+        <div class="footer__footer-item">
+          <div class="footer-item__footer-button">
+            <slot name="footer-button"> </slot>
           </div>
         </div>
-        <div class="footer__item item_flex">
+        <div class="footer__footer-item item_flex">
           <slot name="item-flex"></slot>
         </div>
       </footer>
@@ -94,7 +94,7 @@ export default {
   .container__footer {
     margin: 0px 33px 35px;
 
-    .footer__item {
+    .footer__footer-item {
       margin-top: 14px;
 
       &.item_flex {

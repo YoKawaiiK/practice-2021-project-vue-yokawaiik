@@ -24,7 +24,7 @@
           v-on="field.helpClick ? { 'help-click': field.helpClick } : {}"
         />
       </template>
-      <template v-slot:item-button>
+      <template v-slot:footer-button>
         <hr />
         <v-button type="submit" @click.prevent="clickSignIn">Login</v-button>
       </template>

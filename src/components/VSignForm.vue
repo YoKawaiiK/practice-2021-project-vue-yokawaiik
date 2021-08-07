@@ -1,5 +1,5 @@
 <template>
-  <form div class="sign-form" novalidate autocomplete="on">
+  <form class="sign-form" novalidate>
     <div class="sign-form__container">
       <header class="container__header">
         <div class="header__title">
@@ -35,16 +35,16 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .sign-form {
   position: relative;
 
   width: 100vw;
   height: 100vh;
-  background: #fbfafd;
+  background: $--background-color-primary;
 
   .sign-form__container {
-    background: #ffffff;
+    background: $--background-color;
     border-radius: 6px;
 
     position: absolute;
@@ -53,10 +53,8 @@ export default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
-    filter: drop-shadow(10px 27px 42px rgba(168, 168, 168, 0.13));
-
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.06);
+    filter: drop-shadow(10px 27px 42px $--shadow-color-sign-form);
+    box-shadow: 0px 4px 24px $--color-box-shadow;
   }
 
   .container__header {
@@ -66,14 +64,12 @@ export default {
       margin-top: 26px;
       display: block;
       text-align: center;
-
       font-family: $--font-family;
       font-style: normal;
       font-weight: $--font-weight-bold;
       font-size: $--font-size-title;
       line-height: 29px;
       letter-spacing: -0.428571px;
-
       color: $--color-primary;
     }
 

@@ -1,5 +1,5 @@
 <template>
-  <button :type="type" class="button" v-on="$listeners">
+  <button v-bind="$props" class="button" v-on="$listeners">
     <slot></slot>
   </button>
 </template>
@@ -16,7 +16,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .button {
   width: 100%;
   border-color: transparent;

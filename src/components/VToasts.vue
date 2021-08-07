@@ -11,10 +11,7 @@
         @mouseover="pauseProgress(item)"
         @mouseout="resumeProgress(item)"
       >
-        <div
-          v-if="item.timeOut > 0 && item.showProgress"
-          class="toast__section_progress"
-        >
+        <div v-if="visibleProgress(item)" class="toast__section_progress">
           <div
             :style="{ width: getCurrentProgress(item) + '%' }"
             :class="'theme_type-' + item.type"
@@ -51,10 +48,6 @@ export default {
       type: Boolean,
       default: true,
     },
-    rtl: {
-      type: Boolean,
-      default: false,
-    },
     maxMessages: {
       type: Number,
       default: 5,
@@ -79,6 +72,10 @@ export default {
     this.$eventBus.$on("toast-message", this.handleMessageEvent);
   },
   methods: {
+    // visible progress indicator
+    visibleProgress(item) {
+      return item.timeOut > 0 && item.showProgress;
+    },
     /**
      * Handle a message event.
      *
@@ -202,18 +199,6 @@ export default {
       return messageData.progress * 100;
     },
     /**
-     * Get icon class based on type and layout.
-     *
-     * @param {object} messageData
-     */
-    getIconClass(messageData) {
-      var iconClass = "toast-icon-" + messageData.type;
-      if (messageData.rtl) {
-        return "icon-right " + iconClass;
-      }
-      return "icon-left " + iconClass;
-    },
-    /**
      * Remove a message from the list.
      *
      * @param {number} id
@@ -242,7 +227,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .toasts {
   position: fixed;
   top: 20px;
@@ -313,7 +298,7 @@ export default {
 .toast-enter {
   border: 1px solid black;
 
-  opacity: 0.5 !important;
+  opacity: 0.5;
 }
 .toast-enter-active {
   transition: opacity 0.5s ease-in;

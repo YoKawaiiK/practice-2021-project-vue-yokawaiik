@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <router-view />
-    <VToasts></VToasts>
+    <v-toasts></v-toasts>
   </div>
 </template>
 

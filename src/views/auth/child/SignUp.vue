@@ -1,6 +1,6 @@
 <template>
   <div>
-    <VSignForm>
+    <v-sign-form>
       <template v-slot:header-title>
         <span> Pockets </span>
       </template>
@@ -11,7 +11,7 @@
 
       <template v-slot:content>
         <div v-for="(field, index) in formData" :key="index">
-          <VSignFormField
+          <v-sign-form-field
             v-if="field.type !== 'checkbox'"
             v-model="field.value"
             :name="field.name"
@@ -21,26 +21,26 @@
             :required="field.required"
             :errors="field.errors"
           />
-          <VSignFormCheckBox
+          <v-sign-form-check-box
             v-else
             v-model="field.value"
             :required="field.required"
             :errors="field.errors"
           >
             Я со всем согласен отпустите
-          </VSignFormCheckBox>
+          </v-sign-form-check-box>
         </div>
       </template>
       <template v-slot:item-button>
-        <VButton @click.prevent="clickSignUp">Login</VButton>
+        <v-button @click.prevent="clickSignUp">Login</v-button>
       </template>
       <template v-slot:item-flex>
-        <p>New on our platform?</p>
+        <p>Already have an account?</p>
         <router-link :to="{ name: $options.routes.ROUTE_SIGN_IN }"
-          >Create an account</router-link
+          >Sign in instead</router-link
         >
       </template>
-    </VSignForm>
+    </v-sign-form>
   </div>
 </template>
 
@@ -65,7 +65,7 @@ export default {
         {
           name: "username",
           type: "text",
-          label: "Email",
+          label: "Username",
           placeholder: "johndoe",
           required: true,
           errors: [],
@@ -120,6 +120,7 @@ export default {
         let { username = "", email = "" } = error.response.data;
         this.$toast.show(username + " " + email, "warning");
       }
+      return true;
     },
   },
 };

@@ -4,10 +4,10 @@
       <input
         class="label__input"
         type="checkbox"
-        :checked="checked"
-        @change="changeHandler"
+        v-bind="$attrs"
+        @change="$emit('change', $event.target.checked)"
       />
-      <span class="label__text" :class="requiredError">
+      <span class="label__text" :class="{ 'has-error': hasError }">
         <slot>{{ label }}</slot></span
       >
     </label>
@@ -21,41 +21,28 @@ export default {
     event: "change",
   },
   props: {
-    id: {
-      type: String,
-      default: "",
-    },
     checked: {
       type: Boolean,
-    },
-    label: {
-      type: String,
-      default: "",
+      default: false,
     },
     required: {
       type: Boolean,
       default: false,
     },
     errors: {
-      type: Array(),
+      type: Array,
       default: new Array(),
     },
   },
   computed: {
-    requiredError() {
-      console.log(this.required && this.errors.length > 0);
-      if (this.required && this.errors.length > 0) return "required-error";
-      return "";
-    },
-  },
-  methods: {
-    changeHandler(e) {
-      this.$emit("change", e.target.checked);
+    hasError() {
+      if (this.required && this.errors.length > 0) return true;
+      return false;
     },
   },
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .checkbox {
   label {
     input[type="checkbox"] {
@@ -104,7 +91,7 @@ export default {
         color: $--color-primary-focus;
       }
     }
-    .required-error {
+    .has-error {
       color: $--color-danger-hard;
     }
 

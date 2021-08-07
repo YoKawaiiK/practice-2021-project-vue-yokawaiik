@@ -3,21 +3,23 @@
     <label class="field__label">
       <div class="label__top_item">
         <span class="top_item__label"> {{ label }} </span>
-        <span class="help__button">
-          <router-link v-if="routeName" :to="{ name: routeName }">{{
-            helpText
-          }}</router-link>
-          <span v-else class="highlight">{{ helpText }}</span></span
-        >
+        <span v-if="helpText" class="help__button">
+          <span
+            v-if="helpClick"
+            class="highlight"
+            @click="$emit('help-click')"
+            >{{ helpText }}</span
+          >
+          <span v-else> </span>
+        </span>
       </div>
+      <!-- $attrs not working -->
       <input
-        :name="name"
-        :type="type"
         class="label__input"
-        :placeholder="placeholder"
-        @input="inputEvent"
+        v-bind="$props"
+        @input="$emit('input', $event.target.value)"
       />
-      <div v-if="required == true && errors.length > 0" class="label__errors">
+      <div v-if="showError" class="label__errors">
         <span v-for="(item, i) of errors" :key="i" class="errors__error-item">
           {{ item }}</span
         >
@@ -29,23 +31,20 @@
 <script>
 export default {
   name: "VSignFormField",
+  emits: ["help-link"],
   props: {
-    id: {
-      type: String,
-      default: "input",
-    },
     name: {
       type: String,
       default: "input",
     },
     type: {
       type: String,
-      default: "input",
+      default: "text",
       required: true,
     },
     required: {
       type: Boolean,
-      // default: false,
+      default: false,
     },
     label: {
       type: String,
@@ -59,6 +58,11 @@ export default {
       type: String,
       default: "",
     },
+    helpClick: {
+      type: Function,
+      // remove linter error, the function is called by the parent in parent
+      default: new Function(),
+    },
     routeName: {
       type: String,
       default: "",
@@ -68,14 +72,14 @@ export default {
       default: new Array(),
     },
   },
-  methods: {
-    inputEvent(e) {
-      this.$emit("input", e.target.value);
+  computed: {
+    showError() {
+      return this.required == true && this.errors.length > 0;
     },
   },
 };
 </script>
-<style lang="scss" scope>
+<style lang="scss" scoped>
 .field {
   width: 100%;
   width: 100%;
@@ -83,10 +87,10 @@ export default {
 
   .field__label {
     .label__top_item {
-      &:not(:nth-child(n + 2)) {
-        display: flex;
-        justify-content: space-between;
-      }
+      margin-bottom: 2px;
+      display: flex;
+      justify-content: space-between;
+
       .top_item__label {
         color: $--label-text-color;
         font-size: $--font-size-small;
@@ -105,11 +109,11 @@ export default {
 
       .errors__error-item {
         position: absolute;
-
-        background: $--background-color none repeat scroll 0 0;
+        padding: 0px 2px;
+        background: $--background-color;
         background-size: 5;
 
-        left: 16px;
+        left: 12px;
         top: -10px;
       }
     }

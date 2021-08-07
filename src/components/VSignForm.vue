@@ -99,12 +99,8 @@ export default {
 
       &.item_flex {
         display: flex;
-        flex-direction: row;
         justify-content: center;
-
-        > p:not(:last-child) {
-          margin-right: 10px;
-        }
+        gap: 10px;
       }
     }
   }

@@ -1,0 +1,63 @@
+@import "./vars";
+
+body {
+  font-family: $--font-family;
+  font-size: $--font-size-base;
+  font-weight: $--font-weight-normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+  margin: 0;
+}
+
+a, .highlight {
+  color: $--color-primary;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none;
+  font-family: $--font-family;
+  
+  &:hover {
+    color: $--color-primary-light;
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: #414146;
+  }
+
+  &:focus {
+    color: 0 0 0 1px rgba(163, 162, 168, 0.6);
+    text-decoration: underline;
+  }
+}
+
+p {
+  font-family: $--font-family;
+  font-style: normal;
+  font-weight: normal;
+  font-size: $--font-size-base;
+  color: #6e6b7b;
+  margin: 0px;
+  .p_small {
+    font-family: $--font-family;
+    font-style: normal;
+    font-weight: $--font-weight-normal;
+    font-size: $--font-size-small;
+    color: #6e6b7b;
+  }
+}
+
+h {
+  /* Heading / Heading H4 */
+  color: #5e5873;
+
+  &4 {
+    font-family: $--font-family;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

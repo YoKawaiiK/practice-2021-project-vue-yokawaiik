@@ -148,7 +148,7 @@ export default {
     }
   }
 
-  label__top_item + label__input {
+  .label__top_item + .label__input {
     margin-top: 2px;
   }
 }

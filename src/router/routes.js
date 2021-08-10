@@ -4,8 +4,16 @@ import SignIn from "@/views/auth/child/SignIn.vue";
 import SignUp from "@/views/auth/child/SignUp.vue";
 import Dashboard from "@/views/Dashboard.vue";
 
+import Testing from "@/views/Testing.vue";
+
 // routes names
-import { ROUTE_AUTH, ROUTE_SIGN_IN, ROUTE_SIGN_UP, ROUTE_DASHBOARD } from "./constants/routesNames";
+import {
+  ROUTE_AUTH,
+  ROUTE_SIGN_IN,
+  ROUTE_SIGN_UP,
+  ROUTE_DASHBOARD,
+  ROUTE_TESTING,
+} from "./constants/routesNames";
 
 // middleware for guarding routes
 import auth from "./middleware/auth";
@@ -45,6 +53,14 @@ export default [
     meta: {
       title: "Dashboard",
       middleware: [auth],
+    },
+  },
+  {
+    path: "/testing",
+    name: ROUTE_TESTING,
+    component: Testing,
+    meta: {
+      title: "Testing",
     },
   },
   // link default page if user go to unknown path in url

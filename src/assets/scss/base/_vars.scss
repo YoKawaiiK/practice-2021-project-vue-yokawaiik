@@ -18,13 +18,10 @@ $--color-danger-hard: darken($--color-danger, 30);
 $--color-success: #E4F6E8;
 $--color-warning: #ddd9a3;
 
-
-
 // Text color
 $--text-color-on-primary: #ffffff;
 $--text-color-on-primary-light: #414146;
 
-// 
 // components options
 $--shadow-color: rgba(163, 162, 168, 0.6);
 $--shadow-color-active: rgb(167, 167, 167);
@@ -32,6 +29,23 @@ $--shadow-color-active: rgb(167, 167, 167);
 // for component sign-form
 $--shadow-color-sign-form: rgba(168, 168, 168, 0.13);
 $--color-box-shadow: rgba(0, 0, 0, 0.06);
+
+
+
+// for component VModal
+$--color-primary-disabled: #F8F7FC;
+
+$--vmodal--shadow-color: $--shadow-color-sign-form;
+$--vmodal--header-title--font-size: 32px;
+$--vmodal--close-button--color: #EB5757;
+$--vmodal--close-button--font-size: 25px;
+$--vmodal--radio-button--font-size: 14px;
+$--vmodal--conditon-button--font-size: 18px;
+$--vmodal-select--font-size: 24px;
+$--vmodal--input--font-size: 18px;
+$--vmodal--field-wrapper-border-color: #E9ECEF;
+$--vmodal--footer-button--font-size: 20px;
+// for component VModal
 
 $--label-text-color: #6e6b7b;
 $--input-border-color:#d8d6de;

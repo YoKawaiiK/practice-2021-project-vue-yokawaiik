@@ -1,5 +1,11 @@
 import { AuthService } from "@/services/index";
-import { GET_TOKENS, SET_TOKENS, SIGN_IN } from "./constants/names";
+
+import {
+  GET_TOKENS,
+  SET_TOKENS,
+  SIGN_IN,
+  REFRESH_TOKENS,
+} from "./constants/names";
 
 export default {
   namespaced: true,
@@ -30,6 +36,18 @@ export default {
         await commit(SET_TOKENS, data);
         return true;
       } catch (error) {
+        return error.response.data.detail;
+      }
+    },
+    // get from server new Token
+    async [REFRESH_TOKENS]({ commit, getters }) {
+      try {
+        const { data } = await AuthService.refreshTokens(getters[GET_TOKENS]);
+        console.log(data);
+        await commit(SET_TOKENS, data);
+        return true;
+      } catch (error) {
+        // data it: {detail, token}
         return error.response.data.detail;
       }
     },

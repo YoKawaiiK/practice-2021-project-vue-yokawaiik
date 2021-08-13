@@ -8,4 +8,8 @@ export default class AuthService {
   static signIn(data) {
     return $axios.post("/api/auth/token/obtain/", data);
   }
+
+  static refreshTokens(data) {
+    return $axios.post("/api/auth/token/refresh/", data);
+  }
 }

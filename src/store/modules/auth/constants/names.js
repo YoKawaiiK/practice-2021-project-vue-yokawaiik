@@ -9,3 +9,4 @@ export const SET_TOKENS = "setTokens";
 
 // name actions
 export const SIGN_IN = "signIn";
+export const REFRESH_TOKENS = "refreshTokens";

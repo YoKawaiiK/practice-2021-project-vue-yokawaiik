@@ -1,4 +1,4 @@
-import { $axios, VueAxios, VuexAxios } from "./modules/VueAxios";
+import { $axios, setConfig } from "./modules/VueAxios";
 import ToastsPlugin from "./modules/ToastsPlugin";
 
-export { $axios, VueAxios, VuexAxios, ToastsPlugin };
+export { $axios, setConfig, ToastsPlugin };

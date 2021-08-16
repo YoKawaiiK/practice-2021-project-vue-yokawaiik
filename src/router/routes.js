@@ -2,7 +2,7 @@
 import Auth from "@/views/auth/Auth.vue";
 import SignIn from "@/views/auth/child/SignIn.vue";
 import SignUp from "@/views/auth/child/SignUp.vue";
-import Dashboard from "@/views/Dashboard.vue"
+import Dashboard from "@/views/Dashboard.vue";
 
 // routes names
 import {
@@ -56,5 +56,9 @@ export default [
   {
     path: "*",
     redirect: "/auth/sign-in",
+    // if authhorize user go to nonexistent url then router go to dashboard
+    meta: {
+      middleware: [guest],
+    },
   },
 ];

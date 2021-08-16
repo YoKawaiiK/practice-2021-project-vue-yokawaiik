@@ -1,6 +1,11 @@
 import { eventBus } from "./modules/eventBus";
 import { formValidator } from "./modules/formValidator";
-import { objectKeysToCamelCase } from "./modules/objectKeysToCamelCase";
+import { objectKeysCamelCaseToSnakeCase } from "./modules/objectKeysCamelCaseToSnakeCase";
 import { resetObjectValues } from "./modules/resetObjectValues";
 
-export { formValidator, eventBus, objectKeysToCamelCase, resetObjectValues };
+export {
+  formValidator,
+  eventBus,
+  objectKeysCamelCaseToSnakeCase,
+  resetObjectValues,
+};

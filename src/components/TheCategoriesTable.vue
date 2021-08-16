@@ -1,10 +1,10 @@
 <template>
   <div class="category">
-    <v-modal
+    <the-modal-categories-table
       :show="showModal"
-      @close="showModal = !showModal"
-      @click="categoryHandler"
-    ></v-modal>
+      @close="clickShowModal"
+      @click="modalHandler"
+    />
     <div class="category__category_header">
       <div class="category_header__header_item">
         <h2 class="header_item__title">Summary</h2>
@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import VModal from "@/components/VModal";
+import TheModalCategoriesTable from "@/components/TheModalCategoriesTable";
 import VAddButtonIcon from "@/components/VAddButtonIcon";
 
 import { mapGetters, mapActions } from "vuex";
@@ -50,11 +50,11 @@ import {
   CATEGORY_CREATE,
 } from "@/store/modules/category/constants/names";
 
-import { objectKeysToCamelCase } from "@/utils/index";
+import { objectKeysCamelCaseToSnakeCase } from "@/utils/index";
 
 export default {
-  name: "TheCategory",
-  components: { VModal, VAddButtonIcon },
+  name: "TheCategoriesTable",
+  components: { TheModalCategoriesTable, VAddButtonIcon },
   data() {
     return {
       showModal: false,
@@ -69,13 +69,14 @@ export default {
   methods: {
     ...mapActions(CATEGORY, [CATEGORIES_LIST, CATEGORY_CREATE]),
     // feature/#3 only add item
-    async categoryHandler(modalData) {
-      let newCategoryData = objectKeysToCamelCase(modalData);
+    async modalHandler(modalData) {
+      let newCategoryData = objectKeysCamelCaseToSnakeCase(modalData);
       const result = await this[CATEGORY_CREATE](newCategoryData);
       if (result != true) {
         return this.$toast.show(...result[Object.keys(result)[0]], "danger");
       }
     },
+    // open and close modal
     clickShowModal() {
       this.showModal = !this.showModal;
     },

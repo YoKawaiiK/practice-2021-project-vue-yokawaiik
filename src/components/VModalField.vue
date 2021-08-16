@@ -1,6 +1,6 @@
 <template>
   <input
-    v-bind="$props"
+    v-bind="$attrs"
     class="field_wrapper__input"
     @input="$emit('input', $event.target.value)"
   />
@@ -8,16 +8,6 @@
 <script>
 export default {
   name: "VModalField",
-  props: {
-    placeholder: {
-      type: String,
-      default: "",
-    },
-    type: {
-      type: String,
-      default: "text",
-    },
-  },
 };
 </script>
 <style lang="scss" scoped>

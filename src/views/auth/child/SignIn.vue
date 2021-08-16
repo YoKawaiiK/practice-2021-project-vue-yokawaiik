@@ -100,7 +100,7 @@ export default {
 
       if (validation) {
         let resultSignIn = await this[SIGN_IN](data);
-        if (resultSignIn != true) this.$toast.show(resultSignIn, "warning");
+        if (resultSignIn !== true) this.$toast.show(resultSignIn, "warning");
         else {
           this.$router.push({
             name: ROUTE_DASHBOARD,

@@ -1,6 +1,6 @@
 <template>
   <div class="category">
-    <the-modal-categories-table
+    <the-v-modal-categories-table
       :show="showModal"
       @close="clickShowModal"
       @click="modalHandler"
@@ -39,7 +39,7 @@
   </div>
 </template>
 <script>
-import TheModalCategoriesTable from "@/components/TheModalCategoriesTable";
+import TheVModalCategoriesTable from "@/components/TheVModalCategoriesTable";
 import VAddButtonIcon from "@/components/VAddButtonIcon";
 
 import { mapGetters, mapActions } from "vuex";
@@ -54,7 +54,7 @@ import { objectKeysCamelCaseToSnakeCase } from "@/utils/index";
 
 export default {
   name: "TheCategoriesTable",
-  components: { TheModalCategoriesTable, VAddButtonIcon },
+  components: { TheVModalCategoriesTable, VAddButtonIcon },
   data() {
     return {
       showModal: false,

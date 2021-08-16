@@ -32,7 +32,7 @@ import VModalRadioButtonsCategories from "./VModalRadioButtonsCategories.vue";
 import { resetObjectValues } from "@/utils/index";
 
 export default {
-  name: "TheModalCategoriesTable",
+  name: "TheVModalCategoriesTable",
   components: { VModal, VModalField, VModalRadioButtonsCategories },
   props: {
     // insert / edit

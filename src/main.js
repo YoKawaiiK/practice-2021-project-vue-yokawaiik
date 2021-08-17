@@ -9,8 +9,7 @@ import { eventBus } from "@/utils/index";
 Vue.prototype.$eventBus = eventBus;
 
 // Global use plugins in vue components
-import { VueAxios, ToastsPlugin } from "./plugins/index";
-Vue.use(VueAxios);
+import { ToastsPlugin } from "./plugins/index";
 Vue.use(ToastsPlugin);
 
 Vue.config.productionTip = false;

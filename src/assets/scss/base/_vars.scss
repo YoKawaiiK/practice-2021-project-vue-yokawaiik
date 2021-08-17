@@ -8,6 +8,7 @@ $--color-primary: #7367f0;
 $--color-primary-light: lighten($--color-primary, 20);
 $--background-color: #ffffff;
 $--background-color-primary: #fbfafd;
+$--color-primary-disabled: #F8F7FC;
 
 $--color-primary-focus: rgba(114, 103, 240, 0.6);
 
@@ -18,32 +19,57 @@ $--color-danger-hard: darken($--color-danger, 30);
 $--color-success: #E4F6E8;
 $--color-warning: #ddd9a3;
 
-
-
 // Text color
 $--text-color-on-primary: #ffffff;
 $--text-color-on-primary-light: #414146;
+$--title-color: #6e6b7b;
 
-// 
 // components options
 $--shadow-color: rgba(163, 162, 168, 0.6);
 $--shadow-color-active: rgb(167, 167, 167);
+$--label-text-color: #6e6b7b;
+$--input-border-color:#d8d6de;
+$--placeholder-color:#b9b9c3;
 
 // for component sign-form
 $--shadow-color-sign-form: rgba(168, 168, 168, 0.13);
 $--color-box-shadow: rgba(0, 0, 0, 0.06);
 
-$--label-text-color: #6e6b7b;
-$--input-border-color:#d8d6de;
-$--placeholder-color:#b9b9c3;
+// for component VModal
+$--vmodal--shadow-color: $--shadow-color-sign-form;
+$--vmodal--header-title--font-size: 32px;
+$--vmodal--close-button--color: #EB5757;
+$--vmodal--close-button--font-size: 25px;
+$--vmodal--radio-button--font-size: 14px;
+$--vmodal--conditon-button--font-size: 18px;
+$--vmodal-select--font-size: 24px;
+$--vmodal--input--font-size: 18px;
+$--vmodal--field-wrapper-border-color: #E9ECEF;
+$--vmodal--footer-button--font-size: 20px;
 
+// for component TheCategory
+$--the-category--text--line-height: 24px;
+$--the-category--text--font-size: 14px;
+$--the-category--category--box-shadow: rgba(168, 168, 168, 0.13);
+$--the-category--title--font-size: 18px;
+$--the-category--button--color: #5d5fef;
+$--the-category--button--font-size: 10px;
+$--the-category--text-color: #6e6b7b;
+$--the-category--text-expense-color:#28c76f;
+$--the-category--tbody--linear-gradient:#6e6b7b;
+$--the-category--table--border-color: #e9ecef;
+
+// 
 // fonts
 $--font-family: Montserrat, Avenir, Helvetica, Arial, sans-serif;
 $--font-weight-bold: 700;
 $--font-weight-medium: 500;
 $--font-weight-normal: 400;
 $--font-weight-thin: 200;
+
+// font-size
 $--font-size-small: 12px;
 $--font-size-base: 16px;
 $--font-size-title: 32px;
 $--font-size-subtitle: 24px;
+$--title-font-size: 34px;

@@ -1,3 +1,4 @@
 import AuthService from "./modules/AuthService";
+import CategoryService from "./modules/CategoryService";
 
-export { AuthService };
+export { AuthService, CategoryService };

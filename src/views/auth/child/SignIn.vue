@@ -90,21 +90,22 @@ export default {
       this.$toast.show("Функция восстановления недоступна.", "warning");
     },
     async clickSignIn() {
-      let validation = formValidator(this.formData);
+      try {
+        let validation = formValidator(this.formData);
 
-      // only {[name field]: value}
-      let data = Object.assign(
-        {},
-        ...this.formData.map((field) => ({ [field.name]: field.value }))
-      );
-
-      if (validation) {
-        let resultSignIn = await this[SIGN_IN](data);
-        if (resultSignIn != true) this.$toast.show(resultSignIn, "warning");
-        else
+        // only {[name field]: value}
+        let data = Object.assign(
+          {},
+          ...this.formData.map((field) => ({ [field.name]: field.value }))
+        );
+        if (validation) {
+          await this[SIGN_IN](data);
           this.$router.push({
             name: ROUTE_DASHBOARD,
           });
+        }
+      } catch (error) {
+        this.$toast.show(error, "warning");
       }
     },
   },

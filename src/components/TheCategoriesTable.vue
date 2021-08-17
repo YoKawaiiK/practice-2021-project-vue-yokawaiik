@@ -70,10 +70,11 @@ export default {
     ...mapActions(CATEGORY, [CATEGORIES_LIST, CATEGORY_CREATE]),
     // feature/#3 only add item
     async modalHandler(modalData) {
-      let newCategoryData = objectKeysCamelCaseToSnakeCase(modalData);
-      const result = await this[CATEGORY_CREATE](newCategoryData);
-      if (result != true) {
-        return this.$toast.show(...result[Object.keys(result)[0]], "danger");
+      try {
+        let newCategoryData = objectKeysCamelCaseToSnakeCase(modalData);
+        await this[CATEGORY_CREATE](newCategoryData);
+      } catch (error) {
+        this.$toast.show(...error[Object.keys(error)[0]], "danger");
       }
     },
     // open and close modal
@@ -85,7 +86,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .category {
-  // padding: 6px calc(26px - 20px) 18px 27px;
   padding: 6px 26px 18px 27px;
   width: calc(303px - 27px - 6px);
   font-family: $--font-family;

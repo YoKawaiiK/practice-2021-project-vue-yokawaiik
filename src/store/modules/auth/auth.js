@@ -34,21 +34,19 @@ export default {
       try {
         const { data } = await AuthService.signIn(formData);
         await commit(SET_TOKENS, data);
-        return true;
+        return data;
       } catch (error) {
-        return error.response.data.detail;
+        throw new Error(error.response.data.detail);
       }
     },
     // get from server new Token
     async [REFRESH_TOKENS]({ commit, getters }) {
       try {
         const { data } = await AuthService.refreshTokens(getters[GET_TOKENS]);
-        console.log(data);
         await commit(SET_TOKENS, data);
-        return true;
+        return data;
       } catch (error) {
-        // data it: {detail, token}
-        return error.response.data.detail;
+        return error.response.data.detai;
       }
     },
   },

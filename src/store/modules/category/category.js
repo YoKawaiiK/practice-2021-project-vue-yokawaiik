@@ -30,17 +30,17 @@ export default {
     async [CATEGORY_CREATE]({ commit }, modalData) {
       try {
         const { data } = await CategoryService.categoryCreate(modalData);
-        await commit(ADD_CATEGORY, data);
-        return true;
+        if (data.id) await commit(ADD_CATEGORY, data);
+        return data;
       } catch (error) {
-        return error.response.data;
+        throw error.response.data;
       }
     },
     async [CATEGORIES_LIST]({ commit }) {
       try {
         const { data } = await CategoryService.categoriesList();
         await commit(SET_CATEGORIES_LIST, data);
-        return true;
+        return data;
       } catch (error) {
         return error.response.data.detail;
       }

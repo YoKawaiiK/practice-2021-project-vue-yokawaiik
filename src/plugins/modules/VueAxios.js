@@ -34,7 +34,6 @@ $axios.interceptors.response.use(
   },
   async function (error) {
     // Return non auth error
-
     if (error.response.status === 401) {
       // refresh token if response bad request
       if (!(await store.dispatch(`${AUTH}/${REFRESH_TOKENS}`))) throw error;

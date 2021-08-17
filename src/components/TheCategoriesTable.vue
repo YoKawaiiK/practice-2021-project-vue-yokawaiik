@@ -28,7 +28,7 @@
           <tr
             v-for="item of getCategoriesList"
             :key="item.id"
-            :class="{ expense_green: item.category_type === 'income' }"
+            :class="{ expense_green: item.categoryType === 'income' }"
           >
             <td>{{ item.name }}</td>
             <td>+999K</td>
@@ -50,7 +50,7 @@ import {
   CATEGORY_CREATE,
 } from "@/store/modules/category/constants/names";
 
-import { objectKeysCamelCaseToSnakeCase } from "@/utils/index";
+// import { objectKeysCamelCaseToSnakeCase } from "@/utils/index";
 
 export default {
   name: "TheCategoriesTable",
@@ -71,8 +71,7 @@ export default {
     // feature/#3 only add item
     async modalHandler(modalData) {
       try {
-        let newCategoryData = objectKeysCamelCaseToSnakeCase(modalData);
-        await this[CATEGORY_CREATE](newCategoryData);
+        await this[CATEGORY_CREATE](modalData);
       } catch (error) {
         this.$toast.show(...error[Object.keys(error)[0]], "danger");
       }

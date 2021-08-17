@@ -36,7 +36,8 @@ export default {
         await commit(SET_TOKENS, data);
         return data;
       } catch (error) {
-        throw new Error(error.response.data.detail);
+        // throw new Error(error.response.data.detail);
+        throw error.response.data.detail;
       }
     },
     // get from server new Token
@@ -46,7 +47,7 @@ export default {
         await commit(SET_TOKENS, data);
         return data;
       } catch (error) {
-        return error.response.data.detai;
+        throw error.response.data.detail;
       }
     },
   },

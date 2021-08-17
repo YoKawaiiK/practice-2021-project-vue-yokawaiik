@@ -42,7 +42,7 @@ export default {
         await commit(SET_CATEGORIES_LIST, data);
         return data;
       } catch (error) {
-        return error.response.data.detail;
+        throw error.response.data.detail;
       }
     },
   },

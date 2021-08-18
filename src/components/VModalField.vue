@@ -12,6 +12,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 input.field_wrapper__input {
+  height: 100%;
   margin: 0 auto;
   background: none;
   border: none;

@@ -7,6 +7,7 @@
     >
       <label class="radio_button__button_wrapper">
         <input
+          :name="button.name"
           type="radio"
           :value="value"
           :checked="button.value == value"
@@ -28,6 +29,11 @@ export default {
     value: {
       type: String,
       default: "",
+    },
+    name: {
+      type: String,
+      default: "",
+      require: true,
     },
   },
 };

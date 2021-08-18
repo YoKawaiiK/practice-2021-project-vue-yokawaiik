@@ -1,4 +1,5 @@
 import AuthService from "./modules/AuthService";
-import CategoryService from "./modules/CategoryService";
+import CategoriesService from "./modules/CategoriesService";
+import TransactionsService from "./modules/TransactionsService";
 
-export { AuthService, CategoryService };
+export { AuthService, CategoriesService, TransactionsService };

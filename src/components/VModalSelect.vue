@@ -2,23 +2,32 @@
   <div class="select-wrapper">
     <div class="select-wrapper__arrow_buttons">
       <span class="arrow_buttons__up" @click="setSelectedItem(false)">
-        <img src="@/assets/icons/arrow-up.svg" alt="arrow-up" />
+        <svg>
+          <use xlink:href="@/assets/icons/arrow-up.svg#arrow-up" />
+        </svg>
       </span>
       <span class="arrow_buttons__down" @click="setSelectedItem(true)">
-        <img src="@/assets/icons/arrow-up.svg" alt="arrow-down" />
+        <svg>
+          <use xlink:href="@/assets/icons/arrow-up.svg#arrow-up" />
+        </svg>
       </span>
     </div>
     <select
       :value="selected"
       required
       class="select-wrapper__select-element"
+      :class="{ placeholder: !selected }"
       @change="change($event.target.value)"
     >
       <option class="disable" value="" disabled selected>
         {{ placeholder }}
       </option>
-      <option v-for="(item, i) in selectData" :key="i" :value="item">
-        {{ item }}
+      <option
+        v-for="item in filteredSelectData"
+        :key="item.id"
+        :value="item.id"
+      >
+        {{ item.name }}
       </option>
     </select>
   </div>
@@ -33,19 +42,42 @@ export default {
       default: new Array(),
     },
     value: {
-      type: String,
+      type: [String, Number],
       default: "",
     },
     placeholder: {
       type: String,
       default: "",
     },
+    // for filter. hide values in edit mode
+    categoryType: {
+      type: String,
+      default: "",
+    },
+    mode: {
+      type: String,
+      default: "insert",
+    },
   },
   data() {
     return {
       // start value from param "value" from parent
-      selected: this.value,
+      selected: "",
     };
+  },
+  computed: {
+    filteredSelectData() {
+      if (this.categoryType) {
+        return this.selectData.filter(
+          (item) => item.categoryType === this.categoryType
+        );
+      } else return this.selectData;
+    },
+  },
+  watch: {
+    value() {
+      this.selected = this.value;
+    },
   },
   methods: {
     // change value in parent
@@ -55,27 +87,32 @@ export default {
     // change value in this component
     // element(false - up, true - down)
     setSelectedItem(element) {
-      let currentSelectedIndex = this.selectData.indexOf(this.selected);
+      let currentSelectedIndex = this.filteredSelectData.findIndex((item) => {
+        return item.id === this.selected;
+      });
+
+      console.log(this.filteredSelectData[currentSelectedIndex]);
+
       let findElement;
       // if first option placeholder
-      if (currentSelectedIndex == -1) {
+      if (currentSelectedIndex === -1) {
         findElement = 0;
       }
       //  up
       else if (element) {
         findElement =
-          currentSelectedIndex == 0
-            ? this.selectData.length - 1
-            : currentSelectedIndex - 1;
+          currentSelectedIndex === this.filteredSelectData.length - 1
+            ? 0
+            : currentSelectedIndex + 1;
       }
       // down
       else {
         findElement =
-          currentSelectedIndex == this.selectData.length - 1
-            ? 0
-            : currentSelectedIndex + 1;
+          currentSelectedIndex === 0
+            ? this.filteredSelectData.length - 1
+            : currentSelectedIndex - 1;
       }
-      this.selected = this.selectData[findElement];
+      this.selected = this.filteredSelectData[findElement].id;
       this.change(this.selected);
     },
   },
@@ -95,13 +132,17 @@ export default {
     display: flex;
     flex-direction: column;
 
-    .arrow_buttons__up {
-      height: 18px;
-    }
-
+    .arrow_buttons__up,
     .arrow_buttons__down {
-      height: 18px;
-      transform: rotate(180deg);
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+    .arrow_buttons__down {
+      svg {
+        transform: rotate(180deg);
+      }
     }
   }
   select.select-wrapper__select-element {
@@ -110,18 +151,20 @@ export default {
     border: none;
     background-color: transparent;
     font-size: $--vmodal-select--font-size;
-    font-weight: normal;
-    min-width: 65px;
-    max-width: 100px;
+    width: 100px;
     text-align-last: center;
-    direction: rtl;
-
+    // direction: rtl;
+    color: $--vmodal-select--color;
     > &:focus {
       border: none;
     }
 
     > option {
       color: $--label-text-color;
+    }
+
+    &.placeholder {
+      color: $--placeholder-color;
     }
   }
 }

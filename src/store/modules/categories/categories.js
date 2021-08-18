@@ -1,4 +1,4 @@
-import { CategoryService } from "@/services/index";
+import { CategoriesService } from "@/services/index";
 
 import {
   ADD_CATEGORY,
@@ -29,7 +29,7 @@ export default {
   actions: {
     async [CATEGORY_CREATE]({ commit }, modalData) {
       try {
-        const { data } = await CategoryService.categoryCreate(modalData);
+        const { data } = await CategoriesService.categoryCreate(modalData);
         if (data.id) await commit(ADD_CATEGORY, data);
         return data;
       } catch (error) {
@@ -38,7 +38,7 @@ export default {
     },
     async [CATEGORIES_LIST]({ commit }) {
       try {
-        const { data } = await CategoryService.categoriesList();
+        const { data } = await CategoriesService.categoriesList();
         await commit(SET_CATEGORIES_LIST, data);
         return data;
       } catch (error) {

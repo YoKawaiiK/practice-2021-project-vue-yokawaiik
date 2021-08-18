@@ -1,5 +1,5 @@
 // name module
-export const CATEGORY = "category";
+export const CATEGORIES = "categories";
 
 // name getters
 export const GET_CATEGORIES_LIST = "getCategoriesList";

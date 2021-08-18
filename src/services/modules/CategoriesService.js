@@ -1,6 +1,6 @@
 import { $axios } from "@/plugins/index";
 
-export default class CategoryService {
+export default class CategoriesService {
   static categoriesList() {
     return $axios.get("/api/pockets/categories/");
   }

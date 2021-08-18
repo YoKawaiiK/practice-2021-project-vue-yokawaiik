@@ -44,13 +44,11 @@ import VAddButtonIcon from "@/components/VAddButtonIcon";
 
 import { mapGetters, mapActions } from "vuex";
 import {
-  CATEGORY,
+  CATEGORIES,
   CATEGORIES_LIST,
   GET_CATEGORIES_LIST,
   CATEGORY_CREATE,
-} from "@/store/modules/category/constants/names";
-
-// import { objectKeysCamelCaseToSnakeCase } from "@/utils/index";
+} from "@/store/modules/categories/constants/names";
 
 export default {
   name: "TheCategoriesTable",
@@ -61,13 +59,13 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(CATEGORY, { getCategoriesList: GET_CATEGORIES_LIST }),
+    ...mapGetters(CATEGORIES, { getCategoriesList: GET_CATEGORIES_LIST }),
   },
   created() {
     this[CATEGORIES_LIST]();
   },
   methods: {
-    ...mapActions(CATEGORY, [CATEGORIES_LIST, CATEGORY_CREATE]),
+    ...mapActions(CATEGORIES, [CATEGORIES_LIST, CATEGORY_CREATE]),
     // feature/#3 only add item
     async modalHandler(modalData) {
       try {

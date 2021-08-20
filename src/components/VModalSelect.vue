@@ -90,9 +90,6 @@ export default {
       let currentSelectedIndex = this.filteredSelectData.findIndex((item) => {
         return item.id === this.selected;
       });
-
-      console.log(this.filteredSelectData[currentSelectedIndex]);
-
       let findElement;
       // if first option placeholder
       if (currentSelectedIndex === -1) {

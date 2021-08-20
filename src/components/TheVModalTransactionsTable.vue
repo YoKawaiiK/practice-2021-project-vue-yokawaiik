@@ -122,13 +122,8 @@ export default {
       }
     },
   },
-  // mounted() {
-  //   this.transactionsFields.category.data = getCategoriesList;
-  // },
-  // for edit mode
   methods: {
     // give data in fields to parent
-    // only insert
     giveData() {
       let data = {
         categoryType: this.categoryType,

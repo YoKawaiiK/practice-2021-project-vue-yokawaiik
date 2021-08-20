@@ -43,8 +43,6 @@ export default {
   margin-top: 29px;
   display: flex;
   justify-content: center;
-  // width: 100%;
-
   .radio_buttons__radio_button {
     font-size: $--vmodal--radio-button--font-size;
     font-family: $--font-family;

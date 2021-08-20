@@ -72,7 +72,6 @@ export default {
   },
   methods: {
     // give data in fields to paren
-    // only insert
     giveData() {
       this.$emit("click", this.dataModal);
     },
